@@ -12,7 +12,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="brand">내 블로그</a>
+  <a href="index.html" class="brand">지식 블로그</a>
   <div class="links">
     <a href="index.html">홈</a>
     <a href="about.html">About</a>
@@ -24,7 +24,7 @@
   <div class="post-content" id="post-content">로딩 중...</div>
 </div>
 
-<footer>© 2026 내 블로그</footer>
+<footer>© 2026 지식 블로그</footer>
 
 <script>
   function parseFrontmatter(text) {
@@ -46,7 +46,7 @@
     const text = await res.text();
     const { meta, body } = parseFrontmatter(text);
 
-    document.title = (meta.title || '글') + ' | 내 블로그';
+    document.title = (meta.title || '글') + ' | 지식 블로그';
 
     document.getElementById('post-content').innerHTML = `
       <h1>${meta.title || ''}</h1>
