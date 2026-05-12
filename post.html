@@ -42,7 +42,7 @@
     const slug = new URLSearchParams(location.search).get('slug');
     if (!slug) { location.href = 'index.html'; return; }
 
-    const res = await fetch('../Obsidian/Wiki/' + slug + '.md');
+    const res = await fetch('Obsidian/Wiki/' + slug + '.md');
     const text = await res.text();
     const { meta, body } = parseFrontmatter(text);
 
