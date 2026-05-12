@@ -1,0 +1,84 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f5f6f8;
+  color: #333;
+  line-height: 1.7;
+}
+
+/* Nav */
+nav {
+  background: #1a2b4a;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+nav a { color: #fff; text-decoration: none; font-size: 0.95rem; }
+nav .brand { font-weight: 700; font-size: 1.1rem; }
+nav .links a + a { margin-left: 1.5rem; opacity: 0.8; }
+nav .links a:hover { opacity: 1; }
+
+/* Hero */
+.hero {
+  background: #1a2b4a;
+  color: #fff;
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+}
+.hero h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; }
+.hero p  { font-size: 1rem; opacity: 0.75; }
+
+/* Container */
+.container { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+/* Post grid */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+.card-date { font-size: 0.78rem; color: #888; margin-bottom: 0.5rem; }
+.card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: #1a2b4a; }
+.card p  { font-size: 0.9rem; color: #555; }
+
+/* Post detail */
+.post-content { background: #fff; border-radius: 10px; padding: 2.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+.post-content h1 { font-size: 1.8rem; color: #1a2b4a; margin-bottom: 0.4rem; }
+.post-meta { font-size: 0.82rem; color: #888; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+.post-body h2 { font-size: 1.25rem; margin: 1.8rem 0 0.6rem; color: #1a2b4a; }
+.post-body p  { margin-bottom: 1rem; }
+.post-body ul, .post-body ol { margin: 0.5rem 0 1rem 1.5rem; }
+.post-body li { margin-bottom: 0.3rem; }
+.post-body strong { color: #1a2b4a; }
+
+.back { display: inline-block; margin-bottom: 1.5rem; color: #1a2b4a; text-decoration: none; font-size: 0.9rem; }
+.back:hover { text-decoration: underline; }
+
+/* About */
+.about-box { background: #fff; border-radius: 10px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+.about-box h1 { font-size: 1.5rem; color: #1a2b4a; margin-bottom: 1rem; }
+
+/* Footer */
+footer { text-align: center; padding: 2rem; font-size: 0.8rem; color: #aaa; }
+
+/* Accent */
+.accent { color: #e55a2b; }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.4rem; }
+  .post-grid { grid-template-columns: 1fr; }
+}

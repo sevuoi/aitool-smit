@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 블로그</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="brand">내 블로그</a>
+  <div class="links">
+    <a href="index.html">홈</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>내 블로그</h1>
+  <p>한 줄 소개를 여기에 적어주세요.</p>
+</div>
+
+<div class="container">
+  <div class="post-grid" id="post-grid">로딩 중...</div>
+</div>
+
+<footer>© 2026 내 블로그</footer>
+
+<script>
+  async function parseFrontmatter(text) {
+    const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+    if (!match) return { meta: {}, body: text };
+    const meta = {};
+    match[1].split('\n').forEach(line => {
+      const [k, ...v] = line.split(':');
+      if (k) meta[k.trim()] = v.join(':').trim();
+    });
+    return { meta, body: match[2] };
+  }
+
+  async function loadPosts() {
+    const res = await fetch('posts.json');
+    const posts = await res.json();
+    const grid = document.getElementById('post-grid');
+    grid.innerHTML = '';
+
+    for (const p of posts) {
+      try {
+        const r = await fetch('Wiki/' + p.slug + '.md');
+        const text = await r.text();
+        const { meta, body } = await parseFrontmatter(text);
+        const excerpt = body.replace(/#+\s/g, '').trim().split('\n').find(l => l.trim()) || '';
+
+        const card = document.createElement('a');
+        card.className = 'card';
+        card.href = 'post.html?slug=' + p.slug;
+        card.innerHTML = `
+          <div class="card-date">${meta.date || p.date}</div>
+          <h2>${meta.title || p.title}</h2>
+          <p>${excerpt.slice(0, 80)}${excerpt.length > 80 ? '...' : ''}</p>
+        `;
+        grid.appendChild(card);
+      } catch (e) {
+        console.warn('글 로드 실패:', p.slug);
+      }
+    }
+  }
+
+  loadPosts();
+</script>
+</body>
+</html>
